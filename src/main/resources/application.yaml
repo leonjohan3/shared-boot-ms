@@ -1,0 +1,57 @@
+spring:
+  mvc:
+    servlet:
+      load-on-startup: 1
+
+  main:
+    banner-mode: off
+
+  application:
+    admin:
+      enabled: false
+
+  jmx:
+    enabled: false
+  web:
+    resources:
+      add-mappings: false
+
+  output:
+    ansi:
+      enabled: NEVER
+
+server:
+  servlet:
+    encoding:
+      enabled: false
+    multipart:
+      enabled: false
+
+  compression:
+    enabled: false
+
+  shutdown: graceful
+  tomcat:
+    mbeanregistry:
+      enabled: false
+    resource:
+      allow-caching: false
+    accesslog:
+      enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,shutdown
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true

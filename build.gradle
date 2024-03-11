@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.3'
+    id 'io.spring.dependency-management' version '1.1.4'
+	id "io.freefair.lombok" version "8.4"
+    id "checkstyle"
+    id "pmd"
+    id "com.github.spotbugs" version "6.0.8"
+}
+
+group = 'org.shared'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+checkstyle {
+    ignoreFailures = false
+    showViolations = true
+    toolVersion = "10.14.0"
+}
+
+pmd {
+    consoleOutput = true
+    toolVersion = "6.55.0"
+    rulesMinimumPriority = 5
+    ruleSetFiles = files("$rootProject.projectDir/config/pmd/ruleset.xml")
+}
+
+spotbugs {
+    ignoreFailures = false
+}
